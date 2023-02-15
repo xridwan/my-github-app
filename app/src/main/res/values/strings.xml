@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Github</string>
+    <string name="label_detail">Detail User</string>
+    <string name="label_repository">%s\nRepository</string>
+    <string name="label_followers">%s\nFollowers</string>
+    <string name="label_following">%s\nFollowing</string>
+    <string name="label_search">Search</string>
+    <string name="tabs_followers">Followers</string>
+    <string name="tabs_following">Following</string>
+    <string name="label_not_found">Data not found</string>
+    <string name="label_reminder_off">Reminder set OFF</string>
+    <string name="label_reminder_on">Reminder set ON</string>
+    <string name="label_notify">Find your favorite user now</string>
+    <string name="label_favorite">Favorite User</string>
+    <string name="label_reminder">Reminder</string>
+    <string name="menu_language">Language Setting</string>
+    <string name="menu_favorite">Favorite</string>
+    <string name="menu_reminder">Reminder</string>
+    <string name="menu_theme">Theme</string>
+    <string name="label_theme">Dark Mode</string>
+</resources>
