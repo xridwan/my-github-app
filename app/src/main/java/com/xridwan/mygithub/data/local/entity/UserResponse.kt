@@ -6,18 +6,15 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserResponse(
-
     @field:SerializedName("total_count")
     val total_count: Int,
 
     @field:SerializedName("items")
     val items: MutableList<UserData>
-
 ) : Parcelable
 
 @Parcelize
 data class UserData(
-
     @field:SerializedName("id")
     val id: Int,
 
@@ -44,5 +41,4 @@ data class UserData(
 
     @field:SerializedName("location")
     val location: String? = null
-
 ) : Parcelable

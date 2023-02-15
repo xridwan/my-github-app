@@ -23,6 +23,7 @@ import com.xridwan.mygithub.data.local.entity.UserData
 import com.xridwan.mygithub.data.local.preference.ThemePreferences
 import com.xridwan.mygithub.databinding.ActivityMainBinding
 import com.xridwan.mygithub.helper.toast
+import com.xridwan.mygithub.ui.ViewModelFactory
 import com.xridwan.mygithub.ui.detail.DetailActivity
 import com.xridwan.mygithub.ui.favorite.FavoriteActivity
 import com.xridwan.mygithub.ui.other.ReminderActivity

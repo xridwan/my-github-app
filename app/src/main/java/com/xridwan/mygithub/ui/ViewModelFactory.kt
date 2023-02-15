@@ -1,8 +1,9 @@
-package com.xridwan.mygithub.ui.main
+package com.xridwan.mygithub.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.xridwan.mygithub.data.local.preference.ThemePreferences
+import com.xridwan.mygithub.ui.main.ThemeViewModel
 
 
 class ViewModelFactory(
