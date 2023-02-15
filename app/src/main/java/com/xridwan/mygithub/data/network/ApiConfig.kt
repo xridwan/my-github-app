@@ -1,6 +1,6 @@
 package com.xridwan.mygithub.data.network
 
-import com.xridwan.mygithub.helper.Helper
+import com.xridwan.mygithub.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,13 +17,13 @@ object ApiConfig {
             .apply {
                 addInterceptor(Interceptor { chain ->
                     val builder = chain.request().newBuilder()
-                        .addHeader("Authorization", Helper.TOKEN)
+                        .addHeader("Authorization", BuildConfig.MY_TOKEN)
                         .header("Content-Type", "application/json")
                     return@Interceptor chain.proceed(builder.build())
                 })
             }.build()
         val retrofit = Retrofit.Builder()
-            .baseUrl(Helper.BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

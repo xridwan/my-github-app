@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xridwan.mygithub.databinding.FragmentFollowingBinding
-import com.xridwan.mygithub.helper.Helper.toast
+import com.xridwan.mygithub.helper.toast
 
 class FollowingFragment : Fragment() {
 
@@ -32,7 +32,7 @@ class FollowingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentFollowingBinding.inflate(inflater, container, false)
         return binding.root

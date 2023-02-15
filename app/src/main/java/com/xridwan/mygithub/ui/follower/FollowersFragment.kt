@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xridwan.mygithub.databinding.FragmentFollowersBinding
-import com.xridwan.mygithub.helper.Helper.toast
+import com.xridwan.mygithub.helper.toast
 
 class FollowersFragment : Fragment() {
 
@@ -32,7 +32,7 @@ class FollowersFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentFollowersBinding.inflate(inflater, container, false)
         return binding.root
@@ -68,7 +68,7 @@ class FollowersFragment : Fragment() {
             else binding.progressFollowers.visibility = View.GONE
         })
 
-        followersViewModel.message.observe(viewLifecycleOwner, {response->
+        followersViewModel.message.observe(viewLifecycleOwner, { response ->
             response.getContentIfNotHandled()?.let {
                 toast(it)
             }

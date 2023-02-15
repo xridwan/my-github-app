@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso
 import com.xridwan.mygithub.R
 import com.xridwan.mygithub.data.local.entity.UserData
 import com.xridwan.mygithub.databinding.ActivityDetailBinding
-import com.xridwan.mygithub.helper.Helper.toast
+import com.xridwan.mygithub.helper.toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
