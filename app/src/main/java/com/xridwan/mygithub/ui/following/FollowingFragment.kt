@@ -59,20 +59,20 @@ class FollowingFragment : Fragment() {
     }
 
     private fun getData() {
-        followingViewModel.following.observe(viewLifecycleOwner, { items ->
+        followingViewModel.following.observe(viewLifecycleOwner) { items ->
             if (items != null) followingAdapter.setData(items)
-        })
+        }
 
-        followingViewModel.loading.observe(viewLifecycleOwner, {
+        followingViewModel.loading.observe(viewLifecycleOwner) {
             if (it) binding.progressFollowing.visibility = View.VISIBLE
             else binding.progressFollowing.visibility = View.GONE
-        })
+        }
 
-        followingViewModel.message.observe(viewLifecycleOwner, { response ->
+        followingViewModel.message.observe(viewLifecycleOwner) { response ->
             response.getContentIfNotHandled()?.let {
                 toast(it)
             }
-        })
+        }
     }
 
     override fun onDestroy() {

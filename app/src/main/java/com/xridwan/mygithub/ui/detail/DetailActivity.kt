@@ -89,7 +89,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getData() {
-        detailViewModel.detail.observe(this, { items ->
+        detailViewModel.detail.observe(this) { items ->
             if (items != null) {
                 binding.apply {
                     Picasso.get().load(items.avatarUrl).into(imgAvatarDetail)
@@ -105,18 +105,18 @@ class DetailActivity : AppCompatActivity() {
                         getString(R.string.label_following, items.following.toString())
                 }
             }
-        })
+        }
 
-        detailViewModel.loading.observe(this, { response ->
+        detailViewModel.loading.observe(this) { response ->
             if (response) binding.progressDetail.visibility = View.VISIBLE
             else binding.progressDetail.visibility = View.GONE
-        })
+        }
 
-        detailViewModel.message.observe(this, { response ->
+        detailViewModel.message.observe(this) { response ->
             response.getContentIfNotHandled()?.let {
                 toast(it)
             }
-        })
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -59,20 +59,20 @@ class FollowersFragment : Fragment() {
     }
 
     private fun getData() {
-        followersViewModel.followers.observe(viewLifecycleOwner, { items ->
+        followersViewModel.followers.observe(viewLifecycleOwner) { items ->
             if (items != null) followersAdapter.setData(items)
-        })
+        }
 
-        followersViewModel.loading.observe(viewLifecycleOwner, {
+        followersViewModel.loading.observe(viewLifecycleOwner) {
             if (it) binding.progressFollowers.visibility = View.VISIBLE
             else binding.progressFollowers.visibility = View.GONE
-        })
+        }
 
-        followersViewModel.message.observe(viewLifecycleOwner, { response ->
+        followersViewModel.message.observe(viewLifecycleOwner) { response ->
             response.getContentIfNotHandled()?.let {
                 toast(it)
             }
-        })
+        }
     }
 
     override fun onDestroy() {

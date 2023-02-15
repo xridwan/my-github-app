@@ -80,19 +80,19 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnItemClickCallBack {
     }
 
     private fun getUserList() {
-        viewModel.userList.observe(this, {
+        viewModel.userList.observe(this) {
             mainAdapter.setData(it)
-        })
+        }
 
-        viewModel.loading.observe(this, {
+        viewModel.loading.observe(this) {
             showLoading(it)
-        })
+        }
 
-        viewModel.message.observe(this, { response ->
+        viewModel.message.observe(this) { response ->
             response.getContentIfNotHandled()?.let {
                 toast(it)
             }
-        })
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnItemClickCallBack {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.userSearch(query)
-                viewModel.userList.observe(this@MainActivity, { items ->
+                viewModel.userList.observe(this@MainActivity) { items ->
                     if (items.size == 0) {
                         binding.tvNotFound.visibility = View.VISIBLE
                         binding.rvUsers.visibility = View.GONE
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnItemClickCallBack {
                         binding.tvNotFound.visibility = View.GONE
                         binding.rvUsers.visibility = View.VISIBLE
                     }
-                })
+                }
                 return true
             }
 
@@ -123,7 +123,7 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnItemClickCallBack {
                 if (newText.isEmpty()) {
                     binding.tvNotFound.visibility = View.GONE
                     viewModel.userSearch("Android")
-                    viewModel.userList.observe(this@MainActivity, { items ->
+                    viewModel.userList.observe(this@MainActivity) { items ->
                         if (items.size == 0) {
                             binding.tvNotFound.visibility = View.VISIBLE
                             binding.rvUsers.visibility = View.GONE
@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnItemClickCallBack {
                             binding.tvNotFound.visibility = View.GONE
                             binding.rvUsers.visibility = View.VISIBLE
                         }
-                    })
+                    }
                 }
                 return false
             }
