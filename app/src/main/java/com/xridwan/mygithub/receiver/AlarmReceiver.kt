@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_MUTABLE
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -18,25 +19,13 @@ import java.util.*
 
 class AlarmReceiver : BroadcastReceiver() {
 
-    companion object {
-        private const val NOTIFICATION_ID = 1
-        private const val CHANNEL_ID = "channel_01"
-        private const val CHANNEL_NAME = "dicoding channel"
-        private const val ID_REPEATING = 101
-        private const val TIME_FORMAT = "HH:mm"
-
-        const val TYPE_REPEATING = "RepeatingAlarm"
-        const val EXTRA_MESSAGE = "message"
-        const val EXTRA_TYPE = "type"
-    }
-
     override fun onReceive(context: Context, intent: Intent) {
         showNotification(context)
     }
 
     private fun showNotification(context: Context) {
         val intent = context.packageManager.getLaunchIntentForPackage("com.xridwan.submission3")
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, FLAG_MUTABLE)
 
         val mNotificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -82,7 +71,7 @@ class AlarmReceiver : BroadcastReceiver() {
         calendar.set(Calendar.MINUTE, Integer.parseInt(timeArray[1]))
         calendar.set(Calendar.SECOND, 0)
 
-        val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, 0)
+        val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, FLAG_MUTABLE)
 
         alarmManager.setInexactRepeating(
             AlarmManager.RTC_WAKEUP,
@@ -110,12 +99,24 @@ class AlarmReceiver : BroadcastReceiver() {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
         val requestCode = ID_REPEATING
-        val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0)
+        val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, FLAG_MUTABLE)
         pendingIntent.cancel()
 
         alarmManager.cancel(pendingIntent)
 
         Toast.makeText(context, context.getString(R.string.label_reminder_off), Toast.LENGTH_SHORT)
             .show()
+    }
+
+    companion object {
+        private const val NOTIFICATION_ID = 1
+        private const val CHANNEL_ID = "channel_01"
+        private const val CHANNEL_NAME = "eve channel"
+        private const val ID_REPEATING = 101
+        private const val TIME_FORMAT = "HH:mm"
+
+        const val TYPE_REPEATING = "RepeatingAlarm"
+        const val EXTRA_MESSAGE = "message"
+        const val EXTRA_TYPE = "type"
     }
 }

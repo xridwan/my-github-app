@@ -5,8 +5,8 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import com.xridwan.mygithub.data.local.room.FavoriteDao
-import com.xridwan.mygithub.data.local.room.FavoriteDb
+import com.xridwan.mygithub.data.local.room.UserDao
+import org.koin.android.ext.android.inject
 
 class FavoriteProvider : ContentProvider() {
 
@@ -21,23 +21,20 @@ class FavoriteProvider : ContentProvider() {
         }
     }
 
-    private lateinit var favoriteDao: FavoriteDao
+    private val userDao get() = inject<UserDao>()
 
     override fun onCreate(): Boolean {
-        favoriteDao = context?.let {
-            FavoriteDb.getInstance(it).favoriteDao()
-        }!!
         return false
     }
 
     override fun query(
         uri: Uri, projection: Array<String>?, selection: String?,
-        selectionArgs: Array<String>?, sortOrder: String?
+        selectionArgs: Array<String>?, sortOrder: String?,
     ): Cursor? {
         val cursor: Cursor?
         when (uriMatcher.match(uri)) {
             ID_FAVORITE -> {
-                cursor = favoriteDao.getData()
+                cursor = userDao.value.getData()
                 if (context != null) {
                     cursor.setNotificationUri(context?.contentResolver, uri)
                 }
@@ -63,7 +60,7 @@ class FavoriteProvider : ContentProvider() {
 
     override fun update(
         uri: Uri, values: ContentValues?, selection: String?,
-        selectionArgs: Array<String>?
+        selectionArgs: Array<String>?,
     ): Int {
         return 0
     }
